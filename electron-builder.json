@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
   "appId": "com.vhsdatacodec.app",
   "productName": "VHS Data Codec",
-  "copyright": "Copyright © 2025 VHS Data Codec Project",
+  "copyright": "Copyright \u00a9 2025 VHS Data Codec Project",
   "directories": {
     "output": "release",
     "buildResources": "electron"
@@ -17,21 +17,32 @@
   },
   "win": {
     "target": [
-      { "target": "nsis", "arch": ["x64"] }
+      {
+        "target": "nsis",
+        "arch": [
+          "x64"
+        ]
+      }
     ],
-    "icon": "electron/icon.png",
+    "icon": "electron/icon.ico",
     "artifactName": "${productName}-${version}-win-${arch}.${ext}"
   },
   "nsis": {
     "oneClick": false,
     "perMachine": false,
     "allowToChangeInstallationDirectory": true,
-    "installerIcon": "electron/icon.png",
-    "uninstallerIcon": "electron/icon.png"
+    "installerIcon": "electron/icon.ico",
+    "uninstallerIcon": "electron/icon.ico"
   },
   "mac": {
     "target": [
-      { "target": "dmg", "arch": ["x64", "arm64"] }
+      {
+        "target": "dmg",
+        "arch": [
+          "x64",
+          "arm64"
+        ]
+      }
     ],
     "icon": "electron/icon.png",
     "category": "public.app-category.utilities",
@@ -39,8 +50,18 @@
   },
   "linux": {
     "target": [
-      { "target": "AppImage", "arch": ["x64"] },
-      { "target": "deb", "arch": ["x64"] }
+      {
+        "target": "AppImage",
+        "arch": [
+          "x64"
+        ]
+      },
+      {
+        "target": "deb",
+        "arch": [
+          "x64"
+        ]
+      }
     ],
     "icon": "electron/icon.png",
     "category": "Utility",

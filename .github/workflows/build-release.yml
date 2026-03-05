@@ -3,8 +3,8 @@ name: Build & Release
 on:
   push:
     tags:
-      - "v*"           # triggers on tags like v14.0.0, v1.0.0, etc.
-  workflow_dispatch:   # allows manual trigger from GitHub Actions tab
+      - "v*"
+  workflow_dispatch:
 
 jobs:
   # ─── Windows ── builds the .exe installer ────────────────────────────────
@@ -19,7 +19,37 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
+
+      - name: Convert PNG icon to ICO
+        shell: powershell
+        run: |
+          Add-Type -AssemblyName System.Drawing
+          $png = [System.Drawing.Image]::FromFile("$PWD\electron\icon.png")
+          $bitmap = New-Object System.Drawing.Bitmap(256, 256)
+          $g = [System.Drawing.Graphics]::FromImage($bitmap)
+          $g.DrawImage($png, 0, 0, 256, 256)
+          $g.Dispose()
+          $ico_path = "$PWD\electron\icon.ico"
+          $stream = [System.IO.File]::OpenWrite($ico_path)
+          $writer = New-Object System.IO.BinaryWriter($stream)
+          $writer.Write([uint16]0)
+          $writer.Write([uint16]1)
+          $writer.Write([uint16]1)
+          $writer.Write([byte]0)
+          $writer.Write([byte]0)
+          $writer.Write([byte]0)
+          $writer.Write([byte]0)
+          $writer.Write([uint16]1)
+          $writer.Write([uint16]32)
+          $ms = New-Object System.IO.MemoryStream
+          $bitmap.Save($ms, [System.Drawing.Imaging.ImageFormat]::Png)
+          $imgBytes = $ms.ToArray()
+          $writer.Write([uint32]$imgBytes.Length)
+          $writer.Write([uint32]22)
+          $writer.Write($imgBytes)
+          $writer.Close()
+          $stream.Close()
+          Write-Host "ICO created at $ico_path"
 
       - name: Install dependencies
         run: npm install
@@ -48,7 +78,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
 
       - name: Install system dependencies
         run: |
