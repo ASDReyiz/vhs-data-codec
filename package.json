@@ -1,0 +1,26 @@
+{
+  "name": "vhs-data-codec",
+  "version": "14.0.0",
+  "description": "VHS Data Codec — Store digital files on VHS tapes with RS(255,223) ECC",
+  "author": "VHS Data Codec Project",
+  "license": "MIT",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "electron": "electron .",
+    "dev:electron": "node scripts/dev-electron.js",
+    "build:electron": "vite build && electron-builder --config electron-builder.json"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.0",
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.0"
+  }
+}
