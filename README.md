@@ -11,6 +11,7 @@ Reed-Solomon RS(255,223) error correction, bit interleaving, guard bands, VHS sa
 ---
 ## Live
 Try it online: https://vhs-data-codec.vercel.app
+It maybe cause some problems with big files desktop app recommended.
 
 ## ⬇️ Download (Pre-built)
 
