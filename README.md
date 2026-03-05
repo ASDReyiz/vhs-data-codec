@@ -9,7 +9,7 @@ Reed-Solomon RS(255,223) error correction, bit interleaving, guard bands, VHS sa
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
 ---
-## Live Demo
+## Live
 Try it online: https://vhs-data-codec.vercel.app
 
 ## ⬇️ Download (Pre-built)
